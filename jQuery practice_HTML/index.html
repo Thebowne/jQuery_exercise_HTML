@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body {
+      background-image: url("flow.jfif");
+      background-size: cover;
+      background-position: center;
+    }
+</style>
+
+  <title>Navigation Example</title>
+  <script src="jquery-3.7.1.js"></script>
+</head>
+<body>
+  <h1>Navigation </h1>
+
+  <label for="page-select">Select a Page:</label>
+  <select id="page-select">
+    <option value="">-- Select --</option>
+    <option value="HFC.html">Harry's Fried Chicken menu</option>
+    <option value="calc.html">Pricing on cars</option>
+    <option value="Dropdown.html">Dropdown</option>
+  </select>
+
+  <script>
+    $(document).ready(function() {
+      $('#page-select').on('change', function() {
+        var selectedValue = $(this).val();
+
+        if (selectedValue) {
+          window.location.href = selectedValue;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
