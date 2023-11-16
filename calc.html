@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body {
+      background-image: url("wcar.avif");
+      background-size: cover;
+      background-position: center;
+    }
+</style>
+  <script src="jquery-3.7.1.js"></script>
+  <h1>Car pricing</h1>
+</head>
+<body>
+  <label for="cars">Choose a model:</label>
+  <select id="cars">
+    <option value="">Select - </option>
+    <option value="QVision">QVision 63</option>
+    <option value="Ion">Ion 42</option>
+    <option value="Just">Just 8</option>
+    <option value="MClass">MClass 55</option>
+  </select>
+  <br><br>
+  <label>Extra features</label><br>
+  <input type="checkbox" id="Seats" value="3000"> Heated and massage Seats (+$3000)<br>
+  <input type="checkbox" id="anti" value="10000"> "ANTI" Electric motor (+$10000)<br>
+  <input type="checkbox" id="Retractable roof" value="1500"> Retractable roof (+$1500)<br><br>
+  <div id="priceDisplay"></div>
+
+  <script>
+    $(document).ready(function() {
+      function calculatePrice() {
+        var model = $("#cars").val();
+        var baseprice = 0;
+        var totalprice = 0;
+
+        if (model === "QVision") {
+          baseprice = 50000;
+        } else if (model === "Ion") {
+          baseprice = 42000;
+        } else if (model === "Just") {
+          baseprice = 34000;
+        } else if (model === "MClass") {
+          baseprice = 71000;
+        }
+
+        var extraprice = 0;
+        $("input[type='checkbox']:checked").each(function() {
+          extraprice += parseFloat($(this).val());
+        });
+
+        totalprice = baseprice + extraprice;
+        return totalprice;
+      }
+
+      function showPrice() {
+        var price = calculatePrice();
+        $("#priceDisplay").text('Price: $' + price);
+      }
+      $("#cars, input[type='checkbox']").on('change', function() {
+        showPrice();
+      });
+      showPrice();
+    });
+  </script>
+</body>
+</html>
